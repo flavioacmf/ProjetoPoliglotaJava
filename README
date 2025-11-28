@@ -1,0 +1,45 @@
+# Projeto Poliglota: CMS de Notícias com MongoDB e Elasticsearch
+
+Este projeto demonstra uma **Arquitetura Poliglota** aplicada a um sistema de gerenciamento de conteúdo (CMS). O objetivo é utilizar o banco de dados ideal para cada tipo de tarefa, maximizando performance e escalabilidade.
+
+## 🏛 Arquitetura e Justificativa
+
+O sistema utiliza dois bancos de dados NoSQL trabalhando em conjunto:
+
+1.  **MongoDB (Banco de Documento - Tarefa Y)**
+    * **Função:** *Source of Truth* (Fonte da Verdade).
+    * **Justificativa:** Armazena o conteúdo completo e estruturado dos artigos. Garante persistência segura e flexibilidade de esquema (JSON).
+2.  **Elasticsearch (Banco de Busca - Tarefa X)**
+    * **Função:** Motor de Busca Full-Text.
+    * **Justificativa:** Recebe apenas os metadados essenciais (título, tags) indexados via *Índice Invertido*. Permite buscas complexas e ranqueamento de relevância em milissegundos.
+
+---
+
+## 🚀 Pré-requisitos
+
+Para executar este projeto, você precisará ter instalado:
+
+* **Java JDK 11** ou superior
+* **Maven** (para gerenciar dependências)
+* **Docker** e **Docker Compose**
+
+---
+
+## 🛠️ Passo a Passo para Execução
+
+### 1. Preparar o Ambiente (Docker)
+Na raiz do projeto (onde está o arquivo `docker-compose.yml`), abra o terminal e execute:
+
+```bash
+docker-compose up -d
+
+##Estrutura do Projeto
+ProjetoPoliglotaJava/
+├── docker-compose.yml      # Configuração dos Bancos de Dados
+├── pom.xml                 # Dependências Maven
+├── README.md               # Este arquivo
+└── src/
+    └── main/
+        └── java/
+            ├── AppPoliglota.java  # Lógica principal (Fluxo de Dados)
+            └── Noticia.java       # Modelo de Dados
